@@ -1,0 +1,61 @@
+- go module vendoringなど
+go modules
+https://tip.golang.org/doc/go1.16#tools
+
+
+一番最初にやること
+
+### 初期化
+1. ディレクトリを作成
+2. go fmtをしてみたが怒られる
+```
+go: inconsistent vendoring in /Users/haramatsu:
+	golang.org/x/tools@v0.1.0: is explicitly required in go.mod, but not marked as explicit in vendor/modules.txt
+
+	To ignore the vendor directory, use -mod=readonly or -mod=mod.
+	To sync the vendor directory, run:
+		go mod vendor
+
+```
+
+3. どうやら初期化が必要らしいので
+go mod init example.com/go_todoapp
+example.com/go_todoappは引数としてモジュール名を指定する
+https://qiita.com/uchiko/items/64fb3020dd64cf211d4e
+
+すると
+```
+go: creating new go.mod: module example.com/go_todoapp
+go: to add module requirements and sums:
+	go mod tidy
+```
+
+と表示され、go.modファイルが作成される
+
+iniが自動importされなかったが
+```
+go get "gopkg.in/go-ini/ini.v1"
+```
+してなかっただけ
+
+
+ioパッケージ
+https://christina04.hatenablog.com/entry/golang-io-package-diagrams
+
+
+こんな感じのmain.goを作成したが、
+```
+func main() {
+	log.Println("test")
+	fmt.Println(config.Config.DbName)
+	// fmt.Println(config.Config.LogFile)
+	// fmt.Println(config.Config.Port)
+	// fmt.Println(config.Config.SQLDriver)
+}
+```
+
+なぜか下記のようなエラー
+```
+2021/04/27 23:39:35 open : no such file or directory
+exit status 1
+```
