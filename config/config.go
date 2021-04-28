@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"example.com/go_todoapp/utils"
+
 	"gopkg.in/go-ini/ini.v1"
 )
 
@@ -35,6 +36,6 @@ func LoadConfig() {
 		Port:      cfg.Section("web").Key("port").MustString("8080"),
 		SQLDriver: cfg.Section("db").Key("driver").String(),
 		DbName:    cfg.Section("db").Key("name").String(),
-		LogFile:   cfg.Section("logfile").Key("logfile").String(),
+		LogFile:   cfg.Section("web").Key("logfile").String(),
 	}
 }

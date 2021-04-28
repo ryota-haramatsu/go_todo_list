@@ -59,3 +59,27 @@ func main() {
 2021/04/27 23:39:35 open : no such file or directory
 exit status 1
 ```
+config.go内のConfig変数の値が間違っていただけ
+→成功するとwebapp.logファイルが出力されてログが作成されていることがわかる
+
+TODO
+①　DBの作成 + Userテーブルの設定、作成
+sqlite3のインストール
+- go get github.com/mattn/go-sqlite3
+- sqlite3を使用しているので　webapp.sqlを作成したら 「sqlite3 webapp.sql」
+- .table でテーブルを確認
+- usersテーブルにuserを作成するコマンドを作成
+- uuid パッケージをgetしておく
+https://github.com/google/uuid
+
+uuid = いつでも誰でも作れるけど、作ったIDは世界中で重複しないことになっているID
+https://wa3.i-3-i.info/word13163.html
+
+Userを作成しようとしたとき
+0001-01-01 00:00:00 +0000 UTC
+という表記になっておりエラー
+
+②　ユーザーの作成（Create）
+③　ユーザーの取得（Read）
+④　ユーザーの更新（Update）
+⑤　ユーザーの削除（Delete) 
