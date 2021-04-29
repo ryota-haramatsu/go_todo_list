@@ -32,7 +32,7 @@ func (u *User) CreateUser() (err error) {
 		time.Now())
 
 	if err != nil {
-		log.Fatalf("%v\n%s", err, err)
+		log.Fatalln(err)
 	}
 	return err
 }
