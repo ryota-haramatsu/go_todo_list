@@ -75,6 +75,24 @@ https://github.com/google/uuid
 uuid = いつでも誰でも作れるけど、作ったIDは世界中で重複しないことになっているID
 https://wa3.i-3-i.info/word13163.html
 
+DB Open
+https://golang.org/pkg/database/sql/#Open
+
+```
+The returned DB is safe for concurrent use by multiple goroutines and maintains its own pool of idle connections. 
+Thus, the Open function should be called just once. 
+It is rarely necessary to close a DB.
+```
+- sql.Open()は接続を確立するのではなく、抽象化した構造体を返す
+- dbはConnection Poolを利用するため一度Open()したものをClose()せずに使いまわすことが基本
+- Open(), Close()を頻繁にすると利用効率の低下、ネットワーク帯域の圧迫、TCPのTIME_WAITなどが発生する?
+
+結果セットの取得
+Query() と Exec()
+- Query(): 複数の検索結果を取得する場合に使用する。1行の場合はQueryRow()
+- Exec(): INSERT UPDATEなど検索結果を取得しない場合に使用する
+
+②　ユーザーの作成（Create）
 Userを作成しようとしたとき
 0001-01-01 00:00:00 +0000 UTC
 という表記になっておりエラー
@@ -84,9 +102,12 @@ Panic
 panic: runtime error: invalid memory address or nil pointer dereference
 [signal SIGSEGV: segmentation violation code=0x1 addr=0x20 pc=0x40eb921]
 ```
+宣言したerr への再代入を = ではなく := として入れてしまったから
 
-
-②　ユーザーの作成（Create）
 ③　ユーザーの取得（Read）
+func GetUser()
+コマンドを作成
+Db.QueryRow().Scan()を実行
+
 ④　ユーザーの更新（Update）
 ⑤　ユーザーの削除（Delete) 

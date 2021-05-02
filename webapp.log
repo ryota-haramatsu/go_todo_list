@@ -6,3 +6,16 @@
 2021/04/28 22:57:35 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
 2021/04/28 23:05:06 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
 2021/04/28 23:05:09 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:47:37 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:48:05 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:48:43 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:49:01 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:49:36 main.go:22: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:52:15 main.go:22: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:55:08 main.go:22: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 08:56:11 main.go:22: {0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 09:02:53 main.go:16: test
+2021/04/30 09:05:40 main.go:24: &{0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/04/30 09:05:49 main.go:24: {0  test test@example.com testtest 0001-01-01 00:00:00 +0000 UTC}
+2021/05/02 13:08:29 todos.go:99: near "where": syntax error
+2021/05/02 13:09:13 todos.go:99: near "where": syntax error

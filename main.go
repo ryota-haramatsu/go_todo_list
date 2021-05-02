@@ -1,27 +1,33 @@
 package main
 
-import (
-	"fmt"
-	"log"
-
-	"example.com/go_todoapp/app/models"
-)
+import "example.com/go_todoapp/app/models"
 
 func main() {
-	/*
-		fmt.Println(config.Config.DbName)
-		fmt.Println(config.Config.LogFile)
-		fmt.Println(config.Config.Port)
-		fmt.Println(config.Config.SQLDriver)
-		log.Println("test")
-	*/
-	// fmt.Println(models.Db)
-	u := &models.User{}
-	u.Name = "test"
-	u.Email = "test@example.com"
-	u.Password = "testtest"
-	fmt.Println(u)
-	log.Println(u)
+	// u := models.User{}
+	// u.Name = "テスト2"
+	// u.Email = "テスト2メール"
+	// u.Password = "テスト2パス"
+	// u.CreateUser()
+	// user, _ := models.GetUser(7)
+	// fmt.Println(user)
 
-	u.CreateUser()
+	// u.Name = "テスト1"
+	// u.Email = "テスト1メール"
+	// u.Password = "テスト1パス"
+	// fmt.Println(u)
+
+	// u.CreateUser()
+
+	// u := &models.User{}
+	// user, _ := models.GetUser(3)
+	// user.CreateTodo("３番目のTodo")
+	// user2, _ := models.GetUser(3)
+	// todos, _ := user2.GetTodosByUser()
+
+	// for _, v := range todos {
+	// 	fmt.Println(v)
+	// }
+	t, _ := models.GetTodo(1)
+	t.Content = "更新済み1"
+	t.UpdateTodo()
 }

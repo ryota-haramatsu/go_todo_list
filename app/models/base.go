@@ -18,17 +18,26 @@ var Db *sql.DB
 
 var err error
 
-//テーブル名を宣言
+//ここにテーブル名を宣言
 const (
 	tableNameUser = "users"
+	tableNameTodo = "todos"
 )
 
 func init() {
-	Db, err := sql.Open(config.Config.SQLDriver, config.Config.DbName)
+	//DBへアクセス sql.Open()
+	//接続テストはPing()で確認できる
+	Db, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	//コマンド
+
+	//接続エラーハンドリング
+	if err := Db.Ping(); err != nil {
+		log.Fatal("PingError: ", err)
+	}
+
+	// ユーザーテーブル作成コマンド
 	cmdU := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uuid STRING NOT NULL UNIQUE,
@@ -37,6 +46,14 @@ func init() {
 		password STRING,
 		created_at STRING)`, tableNameUser)
 	Db.Exec(cmdU)
+
+	// Todoテーブル作成コマンド
+	cmdT := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		content TEXT,
+		user_id INTEGER,
+		created_at DATETIME)`, tableNameTodo)
+	Db.Exec(cmdT)
 }
 
 // uuid作成関数
