@@ -1,5 +1,9 @@
 package main
 
+import (
+	"example.com/go_todoapp/app/controllers"
+)
+
 func main() {
 
 	// u := &models.User{}
@@ -14,8 +18,6 @@ func main() {
 	// t, _ := models.GetTodo(1)
 	// t.Content = "更新済み1"
 	// t.UpdateTodo()
-
-	// controllers.StartMainServer()
 
 	// ユーザー新規作成
 	// u := models.User{}
@@ -41,5 +43,6 @@ func main() {
 	// // セッションがDBにあるかチェック
 	// valid, err := session.CheckSession()
 	// fmt.Println(valid)
-	
+	// fmt.Println(models.Db)
+	controllers.StartMainServer()
 }

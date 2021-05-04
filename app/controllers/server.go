@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"text/template"
 
+	"example.com/go_todoapp/app/models"
 	"example.com/go_todoapp/config"
 )
 
@@ -22,6 +23,20 @@ func generateHTML(w http.ResponseWriter, data interface{}, filenames ...string) 
 	templates.ExecuteTemplate(w, "layout", data)
 }
 
+// アクセス制限用のセッションチェック
+func session(w http.ResponseWriter, r *http.Request) (sess models.Session, err error) {
+	// requestからクッキーを取得
+	cookie, err := r.Cookie("_cookie")
+	// エラーがなければ
+	if err == nil {
+		sess = models.Session{UUID: cookie.Value} //DBにセッションがあるか確認
+		if ok, _ := sess.CheckSession(); !ok {
+			err = fmt.Errorf("Invalid session")
+		}
+	}
+	return sess, err
+}
+
 //サーバーを立ち上げるためのコードを記述
 func StartMainServer() error {
 	// css, jsファイルを読み込む
@@ -36,6 +51,7 @@ func StartMainServer() error {
 	http.HandleFunc("/signup", signup)
 	http.HandleFunc("/login", login)
 	http.HandleFunc("/authenticate", authenticate)
+	http.HandleFunc("/todos", index)
 
 	// 第二引数はnilだとページがなければ404エラーを返す
 	return http.ListenAndServe(":"+config.Config.Port, nil)

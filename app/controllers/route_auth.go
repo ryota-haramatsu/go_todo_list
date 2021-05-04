@@ -13,8 +13,15 @@ import (
 func signup(w http.ResponseWriter, r *http.Request) {
 	// r.Methodでリクエストのステータスを取得
 	if r.Method == "GET" {
-		// signupページの出力
-		generateHTML(w, nil, "layout", "public_navbar", "signup")
+		_, err := session(w, r)
+		if err != nil {
+			// signupページの出力
+			generateHTML(w, nil, "layout", "public_navbar", "signup")
+		} else {
+			// セッションがあれば
+			http.Redirect(w, r, "/todos", 302)
+		}
+
 	} else if r.Method == "POST" {
 		err := r.ParseForm() // フォームの解析
 		if err != nil {
@@ -38,7 +45,12 @@ func signup(w http.ResponseWriter, r *http.Request) {
 
 // ログイン処理ハンドラ
 func login(w http.ResponseWriter, r *http.Request) {
-	generateHTML(w, nil, "layout", "public_navbar", "login")
+	_, err := session(w, r)
+	if err != nil {
+		generateHTML(w, nil, "layout", "public_navbar", "login")
+	} else {
+		http.Redirect(w, r, "/todos", 302)
+	}
 }
 
 // ユーザー認証ハンドラ
@@ -49,6 +61,7 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 	}
 	user, err := models.GetUserByEmail(r.PostFormValue("email"))
 	if err != nil {
+		log.Fatalln(user)
 		log.Fatalln(err)
 		// エラーの場合はリダイレクト
 		http.Redirect(w, r, "/login", 302)
