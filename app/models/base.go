@@ -20,8 +20,9 @@ var err error
 
 //ここにテーブル名を宣言
 const (
-	tableNameUser = "users"
-	tableNameTodo = "todos"
+	tableNameUser    = "users"
+	tableNameTodo    = "todos"
+	tableNameSession = "sessions"
 )
 
 func init() {
@@ -54,6 +55,15 @@ func init() {
 		user_id INTEGER,
 		created_at DATETIME)`, tableNameTodo)
 	Db.Exec(cmdT)
+
+	// セッションテーブル作成コマンド
+	cmdS := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
+		id INTEGER PRIMARY KEY AUTOINCREMENT,
+		uuid STRING NOT NULL UNIQUE,
+		email STRING ,
+		user_id INTEGER,
+		created_at DATETIME)`, tableNameSession)
+	Db.Exec(cmdS)
 }
 
 // uuid作成関数

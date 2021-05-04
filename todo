@@ -108,6 +108,6 @@ panic: runtime error: invalid memory address or nil pointer dereference
 func GetUser()
 コマンドを作成
 Db.QueryRow().Scan()を実行
-
 ④　ユーザーの更新（Update）
 ⑤　ユーザーの削除（Delete) 
+
