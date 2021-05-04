@@ -26,7 +26,7 @@ const (
 )
 
 func init() {
-	defer Db.Close() //最後にDBコネクションをクローズ
+	// defer Db.Close() //最後にDBコネクションをクローズ
 	//DBへアクセス sql.Open()
 	//接続テストはPing()で確認できる
 	Db, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
