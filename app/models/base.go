@@ -29,7 +29,7 @@ func init() {
 	// defer Db.Close() //最後にDBコネクションをクローズ
 	//DBへアクセス sql.Open()
 	//接続テストはPing()で確認できる
-	Db, err = sql.Open(config.Config.SQLDriver, config.Config.DbName)
+	Db, err = sql.Open(config.Config.SQLDriver, config.Config.DbName) // sql.Open("sqlite3", "webapp.sql")と同義
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -46,7 +46,7 @@ func init() {
 		name STRING,
 		email STRING,
 		password STRING,
-		created_at STRING)`, tableNameUser)
+		created_at DATETIME)`, tableNameUser)
 	Db.Exec(cmdU)
 
 	// Todoテーブル作成コマンド

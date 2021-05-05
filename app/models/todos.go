@@ -55,7 +55,8 @@ func GetTodos() (todos []Todo, err error) {
 			&todo.ID,
 			&todo.Content,
 			&todo.UserID,
-			&todo.CreatedAt)
+			&todo.CreatedAt,
+		)
 		if err != nil {
 			log.Fatalln(err)
 		}

@@ -6,9 +6,8 @@ import (
 
 func main() {
 
-	// u := &models.User{}
-	// user, _ := models.GetUser(3)
-	// user.CreateTodo("３番目のTodo")
+	// u, _ := models.GetUser(2)
+	// u.CreateTodo("1番目のTodo")
 	// user2, _ := models.GetUser(3)
 	// todos, _ := user2.GetTodosByUser()
 

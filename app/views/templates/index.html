@@ -1,3 +1,13 @@
-{{define "content"}}
-<h1>index</h1>
-{{end}}
+{{ define "content" }}
+ユーザー名: {{ .Name }}
+<h1>Sample Todo App</h1>
+
+<p><a href="/todos/new">Create</a></p>
+<hr>
+
+{{ range .Todos }}
+<div>{{ .Content }}</div>
+<p>[<a href="/todos/edit/{{.ID}}">Edit</a>]</p>
+<hr>
+{{ end }}
+{{ end }}

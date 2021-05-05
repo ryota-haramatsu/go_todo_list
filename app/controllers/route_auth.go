@@ -39,7 +39,7 @@ func signup(w http.ResponseWriter, r *http.Request) {
 			log.Println(err)
 		}
 		// w,r,リダイレクト先のURL、ステータスコードを指定し、リダイレクト
-		http.Redirect(w, r, "/", 302)
+		http.Redirect(w, r, "/todos", 302)
 	}
 }
 
@@ -61,7 +61,6 @@ func authenticate(w http.ResponseWriter, r *http.Request) {
 	}
 	user, err := models.GetUserByEmail(r.PostFormValue("email"))
 	if err != nil {
-		log.Fatalln(user)
 		log.Fatalln(err)
 		// エラーの場合はリダイレクト
 		http.Redirect(w, r, "/login", 302)
